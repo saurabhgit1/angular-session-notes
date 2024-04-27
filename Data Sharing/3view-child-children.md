@@ -9,5 +9,20 @@
 4. viewchildren - Returns a QueryList containing all matching elemetns
 
 ## Example
+
 1. Boiler Plate Examples
 2. [read metadata](https://blog.angular-university.io/angular-viewchild/)
+
+## Additional Points
+
+1. Can subscribe to viewChildren - subscribe callback will run whenever there is a update in query list.
+2. But can't subscribe to viewChild as it represents the component only
+
+```javascript
+@ViewChildren("appchild") public inputchild;
+ngAfterViewInit(){
+    this.inputchild?.changes?.subscribe((res) => {
+        console.log('changes', res);
+        });
+}
+```
