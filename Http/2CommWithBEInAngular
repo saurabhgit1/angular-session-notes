@@ -1,0 +1,53 @@
+# Communicating With BE Services using HTTP
+
+## Setting up
+
+1. Why & How to Connect with BE ? [Explanation](https://angular.dev/guide/http)
+2. Setting up HTTP Client
+   - Provide using DI (standalone & module based) [Example](https://angular.dev/guide/http/setup#providing-httpclient-through-dependency-injection)
+   - Inject HTTP Client in components or services and use
+3. Configurable Features of HTTP Client
+   - withFetch
+   - withInterceptors you can make corrections to your passport, including the place of birth, after you've submitted your application. You can visit the enquiry counter at the Passport Regional Office (RPO) to make corrections
+   - [Detailed List](https://angular.dev/guide/http/setup#configuring-features-of-httpclient)
+
+## Making HTTP Requests
+
+- Different HTTP verbs to make requests-
+  - Ex- GET, POST, PUT, PATCH
+- Subscribe and make request to server
+
+```javascript
+http.get("/api/config").subscribe((resp) => {
+  // process the response
+});
+```
+
+- Configure Response Type [Example](https://angular.dev/guide/http/making-requests#fetching-other-types-of-data)
+- Setting params and request headers [Deep Dive](https://angular.dev/guide/http/making-requests#setting-url-parameters)
+
+```javascript
+http
+  .get("/api/config", {
+    headers: {
+      "Content-Type": "application/json",
+      "in-auth-token": sessionStorage.getItem("in-auth-token"),
+    },
+    params: { product: "sookshma" },
+  })
+  .subscribe((config) => {
+    // ...
+  });
+```
+
+
+## Handling HTTP Response
+- By default response body is returned
+- Configuring other response types
+    - response
+    - events
+    - [All Configurations with Examples](https://angular.dev/guide/http/making-requests#interacting-with-the-server-response-events)
+
+## Handling Request Failure
+- Observables error channel
+- Use error callback or catchError operator of RxJS [Example](https://jasonwatmore.com/post/2022/11/08/angular-http-request-error-handling-with-the-httpclient) || [StackBlitz](https://stackblitz.com/edit/angular-http-request-error-handling-2byslr?file=src%2Fapp%2Fcomponents%2Fpost-request-catch-error.component.ts)
